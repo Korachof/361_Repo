@@ -105,6 +105,45 @@ class StartPage(tk.Frame):
         self.color_choice.grid(row=0, column=0, padx=1, pady=2, sticky="WES")
         self.lands_algorithm.grid(row=1, column=0, padx=1, pady=2, sticky="WEN")
         self.exit_button.grid(row=2, column=0, padx=1, pady=2, sticky="WEN")
+
+
+class ResultsPage(tk.Frame):
+    def __init__(self, frameHash, mainWindow):
+        super().__init__()
+        self.frameHash = frameHash
+        self.mainWindow = mainWindow
+        self.label = tk.Label(self, text="Color Select Page")
+        # create the button images 
+        self.start_button = PhotoImage(file="button_images/start_button.png")
+
+        # Configure the row and 5 columns for the buttons. 
+        # Configure the row and 5 columns for the buttons. 
+        Grid.rowconfigure(self,0,weight=1)
+        Grid.rowconfigure(self,1,weight=1)
+        Grid.rowconfigure(self,2,weight=1)
+        Grid.rowconfigure(self,3,weight=1)
+        Grid.rowconfigure(self,4,weight=1)
+        Grid.rowconfigure(self,5,weight=1)
+        Grid.columnconfigure(self,0,weight=1)
+        Grid.columnconfigure(self,1,weight=1)
+        Grid.columnconfigure(self,2,weight=1)
+        Grid.columnconfigure(self,3,weight=1)
+        Grid.columnconfigure(self,4,weight=1)
+
+        self.select_color_label = tk.Label(self, text="Please follow these instructions")
+        self.test_grid_label = tk.Label(self, text="testing testing testing instruction dialogue label")
+        self.exit_button = tk.Button(self,
+                                     text="Exit",
+                                     bg="#2f9fd6",
+                                     fg="white", 
+                                     activebackground="#146d99", 
+                                     activeforeground="white",
+                                     font="Garamond", 
+                                     command=sys.exit)
+
+        self.test_grid_label.grid(row=1, column=1)
+        self.select_color_label.grid(row=2, column=2, padx=1, pady=1)
+        self.exit_button.grid(row=5, column=2)
         
 
 
