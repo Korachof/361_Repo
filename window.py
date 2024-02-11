@@ -30,3 +30,11 @@ class WindowScreen(tk.Tk):
         self.frame = self.button_command(self.frame_hash, self)
         
         self.frame.grid(row=0, column=0)
+
+class StartPage(tk.Frame):
+  """Class to create the frame for the start/home page"""
+    def __init__(self, frameHash, mainWindow):
+        super().__init__()
+        self.frameHash = frameHash
+        self.mainWindow = mainWindow
+        self.label = tk.Label(self, text="Main Page")
