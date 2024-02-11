@@ -3,14 +3,14 @@
 
 
 def land_count(avg_mana_cost, num_cheap_draw_ramp):
-  num_lands = 31.42 + 3.13 * avg_mana_cost – 0.28 * num_cheap_draw_ramp
-  return num_lands
+    num_lands = 31.42 + 3.13 * avg_mana_cost – 0.28 * num_cheap_draw_ramp
+    return num_lands
 
 # data for mana count vs sources provided by Frank Karsten. The empty fields were estimated by me
 # https://www.channelfireball.com/article/How-Many-Sources-Do-You-Need-to-Consistently-Cast-Your-Spells-A-2022-Update/dc23a7d2-0a16-4c0b-ad36-586fcca03ad8/
 
 def num_of_sources(mana_value, num_of_symbols):
-  """Function that takes in the cheapest card that has the greatest number of mana symbols of a single color 
+    """Function that takes in the cheapest card that has the greatest number of mana symbols of a single color 
         that the player wants to cast on time (turn = n = mana value). Returns the number of sources the deck
         should have in order to cast that spell on time
         mana_color: STR - mana color of the card
@@ -18,7 +18,7 @@ def num_of_sources(mana_value, num_of_symbols):
         num_of_symbols: INT - how many symbols of the given color are there
         Returns: INT - the number of symbols of the given color needed"""
 
-  val_to_sym_hash = {
+    val_to_sym_hash = {
              1: {1: 19},
              2: {1: 19, 2: 30},
              3: {1: 18, 2: 28, 3: 36},
