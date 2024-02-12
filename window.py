@@ -132,18 +132,27 @@ class ResultsPage(tk.Frame):
 
         self.select_color_label = tk.Label(self, text="Please follow these instructions")
         self.test_grid_label = tk.Label(self, text="testing testing testing instruction dialogue label")
-        self.text_input_cmc = Text(self,
+        self.text_input_cmc = tk.Text(self,
                                    activebackground="#146d99", 
                                    activeforeground="white",
                                    height=2,
                                    width=2
                                    font="Garamond")
-        self.text_input_symbols = Text(self,
+        self.text_input_symbols = tk.Text(self,
                                    activebackground="#146d99", 
                                    activeforeground="white",
                                    height=2,
                                    width=2
                                    font="Garamond")
+
+        self.land_count_button = tk.Button(self,
+                                     text="Your Land Count",
+                                     bg="#2f9fd6",
+                                     fg="white", 
+                                     activebackground="#146d99", 
+                                     activeforeground="white",
+                                     font="Garamond", 
+                                      )
                                    
         self.exit_button = tk.Button(self,
                                      text="Exit",
