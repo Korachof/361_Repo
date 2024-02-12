@@ -55,15 +55,15 @@ class StartPage(tk.Frame):
 
     
       # create the button images 
-      self.start_button = PhotoImage(file="button_images/start_button.png")   
+      # self.start_button = PhotoImage(file="button_images/start_button.png")   
 
       # create text labels 
       self.welcome_label = tk.Label(self, text="Welcome to the MTG Staple Compiler")
       self.choose_label = tk.Label(self, text="Please choose from the options below")
 
       # set the start button with the start button image
-      self.start = tk.Button(self,
-                  image=self.start_button)
+      # self.start = tk.Button(self,
+      #            image=self.start_button)
 
       # set the window frame to the start page frame
       self.options_frame = tk.Frame(self)
@@ -79,7 +79,7 @@ class StartPage(tk.Frame):
                                     activebackground="#146d99", 
                                     activeforeground="white", 
                                     font="Garamond",
-                                    command=lambda: self.mainWindow.create_frame(1))
+                                    command=lambda: self.mainWindow.create_frame(2))
       
       self.lands_algorithm = tk.Button(self.options_frame, 
                                     text="Calculate How Many Lands Your Deck Needs", 
@@ -88,7 +88,7 @@ class StartPage(tk.Frame):
                                     activebackground="#146d99", 
                                     activeforeground="white", 
                                     font="Garamond",
-                                    command=lambda: self.mainWindow.create_frame(2))
+                                    command=lambda: self.mainWindow.create_frame(1))
       
       self.exit_button = tk.Button(self.options_frame,
                                     text="Exit",
@@ -102,10 +102,10 @@ class StartPage(tk.Frame):
       #  set the buttons and labels on the grid 
       self.welcome_label.grid(row=0, column=2, padx=1, pady=1)
       self.choose_label.grid(row=1, column=2, padx=1, pady=1)
-      self.start.grid(row=2, column=2, padx=1, pady=1)
-      self.color_choice.grid(row=0, column=0, padx=1, pady=2, sticky="WES")
-      self.lands_algorithm.grid(row=1, column=0, padx=1, pady=2, sticky="WEN")
-      self.exit_button.grid(row=2, column=0, padx=1, pady=2, sticky="WEN")
+      # self.start.grid(row=2, column=2, padx=1, pady=1)
+      self.color_choice.grid(row=0, column=2, padx=1, pady=2, sticky="WES")
+      self.lands_algorithm.grid(row=1, column=2, padx=1, pady=2, sticky="WEN")
+      self.exit_button.grid(row=2, column=2, padx=1, pady=2, sticky="WEN")
 
 
 class LandCountPage(tk.Frame):
@@ -115,7 +115,7 @@ class LandCountPage(tk.Frame):
       self.mainWindow = mainWindow
       self.label = tk.Label(self, text="Color Select Page")
       # create the button images 
-      self.start_button = PhotoImage(file="button_images/start_button.png")
+      # self.start_button = PhotoImage(file="button_images/start_button.png")
 
       # Configure the row and 5 columns for the buttons. 
       # Configure the row and 5 columns for the buttons. 
@@ -125,37 +125,64 @@ class LandCountPage(tk.Frame):
       Grid.rowconfigure(self,3,weight=1)
       Grid.rowconfigure(self,4,weight=1)
       Grid.rowconfigure(self,5,weight=1)
-      Grid.columnconfigure(self,0,weight=1)
+      Grid.rowconfigure(self,6,weight=1)
+      Grid.rowconfigure(self,7,weight=1)
+      Grid.rowconfigure(self,8,weight=1)
+      Grid.rowconfigure(self,9,weight=1)
+      Grid.columnconfigure(self,0,weight=0)
       Grid.columnconfigure(self,1,weight=1)
-      Grid.columnconfigure(self,2,weight=1)
+      Grid.columnconfigure(self,2,weight=0)
       Grid.columnconfigure(self,3,weight=1)
       Grid.columnconfigure(self,4,weight=1)
 
-      self.select_color_label = tk.Label(self, text="Please follow these instructions")
-      self.test_grid_label = tk.Label(self, text="testing testing testing instruction dialogue label")
-      self.text_input_cmc = tk.Text(self,
-                                  activebackground="#146d99", 
-                                  activeforeground="white",
-                                  height=2,
-                                  width=2,
-                                  font="Garamond")
-      self.text_input_symbols = tk.Text(self,
-                                  activebackground="#146d99", 
-                                  activeforeground="white",
-                                  height=2,
-                                  width=2,
-                                  font="Garamond")
+      self.test_grid_label = tk.Label(self,
+                                      text="testing testing testing instruction dialogue label",
+                                      font=("Garamond", 14))
+      self.select_color_label = tk.Label(self,
+                                         text="Please follow these instructions",
+                                         font=("Garamond", 14))
+      
+      self.avg_mana_text= tk.Label(self,
+                                   text="Type the Average Mana Value Below",
+                                   font=("Garamond", 14))
+      self.avg_mana_text2 = tk.Label(self,
+                                     text="(Round to Two Decimal Places)",
+                                     font=("Garamond", 14))
+      self.draw_ramp_text = tk.Label(self,
+                                     text="Type the Total Number of Card Draw and Ramp Below",
+                                     font=("Garamond", 14))
+      self.text_input_avg_mana = tk.Text(self,
+                                  bg="#146d99", 
+                                  fg="white",
+                                  height=1,
+                                  width=6,
+                                  font=("Garamond", 14))
+      self.text_input_draw_ramp = tk.Text(self,
+                                  bg="#146d99", 
+                                  fg="white",
+                                  height=1,
+                                  width=6,
+                                  font=("Garamond", 14))
 
       self.land_count_button = tk.Button(self,
-                                    text="Your Land Count",
-                                    bg="#2f9fd6",
-                                    fg="white", 
-                                    activebackground="#146d99", 
-                                    activeforeground="white",
-                                    font="Garamond",
-                                    command=self.land_count_inputs 
-                                    )
-                                  
+                                        text="Your Land Count",
+                                        bg="#2f9fd6",
+                                        fg="white", 
+                                        activebackground="#146d99", 
+                                        activeforeground="white",
+                                        font="Garamond",
+                                        command=self.land_count_inputs 
+                                        )
+      
+      self.return_to_start_button = tk.Button(self,
+                                              text="Return to Main Menu",
+                                              bg="#2f9fd6",
+                                              fg="white", 
+                                              activebackground="#146d99", 
+                                              activeforeground="white",
+                                              font="Garamond",
+                                              command=lambda: self.mainWindow.create_frame(0))
+                                        
       self.exit_button = tk.Button(self,
                                     text="Exit",
                                     bg="#2f9fd6",
@@ -165,9 +192,15 @@ class LandCountPage(tk.Frame):
                                     font="Garamond", 
                                     command=sys.exit)
 
-      self.test_grid_label.grid(row=1, column=1)
-      self.select_color_label.grid(row=2, column=2, padx=1, pady=1)
-      self.exit_button.grid(row=5, column=2)
+      self.test_grid_label.grid(row=1, column=1, padx=1, pady=(10, 1))
+      self.select_color_label.grid(row=2, column=1, padx=1, pady=(1, 50))
+      self.avg_mana_text.grid(row=3, column=1, padx=1, pady=1)
+      self.avg_mana_text2.grid(row=4, column=1, padx=1, pady=0)
+      self.text_input_avg_mana.grid(row=5, column=1, padx=0, pady=15)
+      self.draw_ramp_text.grid(row=6, column=1, padx=1, pady=1)
+      self.text_input_draw_ramp.grid(row=7, column=1, padx=0, pady=15)
+      self.return_to_start_button.grid(row=8, column=1, padx=1, pady=2, sticky="WES")
+      self.exit_button.grid(row=9, column=1, pady=2, sticky="WEN")
 
   def land_count_inputs(self):
     avg_mana_cost = self.text_input_symbols.get(1.0, "end-1c")
@@ -176,4 +209,7 @@ class LandCountPage(tk.Frame):
     print(deck_build_algo.land_count(avg_mana_cost, num_cheap_card_draw))
         
 
+if __name__ == "__main__":
+    testObj = WindowScreen()
+    testObj.mainloop()
 
