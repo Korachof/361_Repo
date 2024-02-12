@@ -3,7 +3,7 @@
 
 
 def land_count(avg_mana_cost, num_cheap_draw_ramp):
-    num_lands = 31.42 + 3.13 * avg_mana_cost – 0.28 * num_cheap_draw_ramp
+    num_lands = 31.42 + 3.13 * avg_mana_cost - 0.28 * num_cheap_draw_ramp
     return num_lands
 
 # data for mana count vs sources provided by Frank Karsten. The empty fields were estimated by me
