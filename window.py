@@ -88,7 +88,7 @@ class StartPage(tk.Frame):
 																		command=lambda: self.mainWindow.create_frame(2)) """
 			
 			self.lands_algorithm = tk.Button(self.options_frame, 
-																		text="Calculate How Many Lands Your Deck Needs", 
+																		text="Calculate Recommended Land Count", 
 																		bg="#2f9fd6", 
 																		fg="white", 
 																		activebackground="#146d99", 
@@ -117,7 +117,7 @@ class StartPage(tk.Frame):
 			#  set the buttons and labels on the grid 
 			self.welcome_label.grid(row=0, column=2, padx=1, pady=1)
 			self.choose_label.grid(row=1, column=2, padx=1, pady=1)
-			self.blank_space_label.grid(row=2, column=2, padx=1, pady=30)
+			self.blank_space_label.grid(row=2, column=2, padx=1, pady=15)
 			
 			# self.start.grid(row=2, column=2, padx=1, pady=1)
 			# self.color_choice.grid(row=0, column=2, padx=1, pady=2, sticky="WES")
@@ -257,6 +257,11 @@ class LandCountPage(tk.Frame):
 			self.land_count_button.grid(row=15, column=1, padx=0, pady=2, sticky="WE")
 			self.return_to_start_button.grid(row=16, column=1, padx=1, pady=2, sticky="WESN")
 			self.exit_button.grid(row=17, column=1, pady=2, sticky="WEN")
+
+
+			# set it so the enter button will also work with calculating land count
+			self.bind("<Return>", lambda: self.find_land_count(self.text_input_avg_mana.get(1.0, "end-1c"),
+																												self.text_input_draw_ramp.get(1.0, "end-1c")))
 
 
 	def find_land_count(self, mana_avg, ramp_draw):
