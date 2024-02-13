@@ -9,12 +9,12 @@ class WindowScreen(tk.Tk):
 	def __init__(self):
 		super().__init__()
 		
-		self.title("MTG Staple Compiler")
+		self.title("MTG Deck Building Companion App")
 		self.geometry("1280x720")
 		
 		Grid.rowconfigure(self,0,weight=1)
 		Grid.columnconfigure(self,0,weight=1)
-		self.frame_hash = {0: StartPage, 1: LandCountPage}
+		self.frame_hash = {0: StartPage, 1: LandCountPage, 2: HelpPage}
 		self.current_window = 0
 		self.button_command = self.frame_hash[self.current_window]
 		self.frame = self.create_frame(self.current_window)
@@ -59,7 +59,7 @@ class StartPage(tk.Frame):
 
 			# create text labels 
 			self.welcome_label = tk.Label(self,
-																		text="Welcome to the MTG Staple Compiler",
+																		text="Welcome to the MTG Deck Building Companion App",
 																		font=("Garamond", 14))
 			self.choose_label = tk.Label(self,
 																	 text="Please choose from the options below",
@@ -78,14 +78,14 @@ class StartPage(tk.Frame):
 			self.options_frame.grid(row=3, column=2, padx=1, pady=1)
 
 			# Create buttons with the different options for the user
-			self.color_choice = tk.Button(self.options_frame, 
+			""" self.color_choice = tk.Button(self.options_frame, 
 																		text="Find Deck Staples", 
 																		bg="#2f9fd6",
 																		fg="white", 
 																		activebackground="#146d99", 
 																		activeforeground="white", 
 																		font=("Garamond", 14),
-																		command=lambda: self.mainWindow.create_frame(2))
+																		command=lambda: self.mainWindow.create_frame(2)) """
 			
 			self.lands_algorithm = tk.Button(self.options_frame, 
 																		text="Calculate How Many Lands Your Deck Needs", 
@@ -95,6 +95,15 @@ class StartPage(tk.Frame):
 																		activeforeground="white", 
 																		font=("Garamond", 14),
 																		command=lambda: self.mainWindow.create_frame(1))
+			
+			self.help_button = tk.Button(self.options_frame, 
+																		text="Help", 
+																		bg="#2f9fd6", 
+																		fg="white", 
+																		activebackground="#146d99", 
+																		activeforeground="white", 
+																		font=("Garamond", 14),
+																		command=lambda: self.mainWindow.create_frame(2))
 			
 			self.exit_button = tk.Button(self.options_frame,
 																		text="Exit",
@@ -111,8 +120,9 @@ class StartPage(tk.Frame):
 			self.blank_space_label.grid(row=2, column=2, padx=1, pady=30)
 			
 			# self.start.grid(row=2, column=2, padx=1, pady=1)
-			self.color_choice.grid(row=0, column=2, padx=1, pady=2, sticky="WES")
+			# self.color_choice.grid(row=0, column=2, padx=1, pady=2, sticky="WES")
 			self.lands_algorithm.grid(row=1, column=2, padx=1, pady=2, sticky="WEN")
+			self.help_button.grid(row=2, column=2, padx=1, pady=2, sticky="WESN")
 			self.exit_button.grid(row=2, column=2, padx=1, pady=2, sticky="WEN")
 
 
@@ -252,6 +262,8 @@ class LandCountPage(tk.Frame):
 	def find_land_count(self, mana_avg, ramp_draw):
 		"""Uses the Calculate Your Land Count button to calculate the avg number of lands the deck needs
 		"""
+
+		# try to convert mana_avg from str to float. If error, return error message
 		try: 
 			avg = float(mana_avg)
 			
@@ -260,6 +272,7 @@ class LandCountPage(tk.Frame):
 			self.blank_space_label2["fg"] = "#F05039"
 			return
 
+		# try to convert ramp_draw from str to int. If error, return error message
 		try: 
 			dr = int(ramp_draw)
 
@@ -268,12 +281,72 @@ class LandCountPage(tk.Frame):
 			self.blank_space_label2["fg"] = "#F05039"
 			return
 
-		
+		# no errors, so set text color to a pleasant color and use the land_count formula to calculate and display
 		self.blank_space_label2["fg"] = "#148899"
 
 		land_count = deck_build_algo.land_count(avg, dr)
 		
 		self.blank_space_label2["text"] = "Number of Lands Your Deck Needs: " + str(land_count)
+
+
+class HelpPage(tk.Frame):
+	"""Class to create the frame for the Help Page"""
+	def __init__(self, frameHash, mainWindow):
+			super().__init__()
+			self.frameHash = frameHash
+			self.mainWindow = mainWindow
+			self.label = tk.Label(self, text="Main Page")
+			
+			# Configure the row and 5 columns for the buttons. 
+			Grid.rowconfigure(self,0,weight=1)
+			Grid.rowconfigure(self,1,weight=1)
+			Grid.rowconfigure(self,2,weight=1)
+			Grid.rowconfigure(self,3,weight=1)
+			Grid.rowconfigure(self,4,weight=1)
+			Grid.rowconfigure(self,5,weight=1)
+			Grid.rowconfigure(self,6,weight=1)
+			Grid.rowconfigure(self,7,weight=1)
+			Grid.columnconfigure(self,0,weight=1)
+			Grid.columnconfigure(self,1,weight=1)
+			Grid.columnconfigure(self,2,weight=1)
+			Grid.columnconfigure(self,3,weight=1)
+			Grid.columnconfigure(self,4,weight=1)
+
+			self.welcome_help_label = tk.Label(self,
+																			text="Help Page",
+																			font=("Garamond", 14))
+			self.greeting_label = tk.Label(self,
+																				 text="Thank you so much for using the Deck Building Companion App",
+																				 font=("Garamond", 14))
+			
+			self.information1_label = tk.Label(self,
+																				 text="This app is designed to aid you, the user, in your deck building journey",
+																				 font=("Garamond", 14))
+			
+			self.information2_label = tk.Label(self,
+																				 text="Whether you struggle with having too many (or too few) lands, aren't sure",
+																				 font=("Garamond", 14))
+			
+			self.information3_label = tk.Label(self,
+																				 text="how many sources of a specific color you should include, or would like",
+																				 font=("Garamond", 14))
+			
+			self.information4_label = tk.Label(self,
+																				 text="recommendations for cards to play in your deck, this app is for you.",
+																				 font=("Garamond", 14))
+			
+			self.information5_label = tk.Label(self,
+																				 text="Using the app is simple, and everything you need is only a few seconds and",
+																				 font=("Garamond", 14))
+			
+			self.information6_label = tk.Label(self,
+																				 text="clicks away. Just navigate to the page with the desired feature and follow",
+																				 font=("Garamond", 14))
+			
+			self.information7_label = tk.Label(self,
+																				 text="the included directions.",
+																				 font=("Garamond", 14))
+
 
 
 if __name__ == "__main__":
