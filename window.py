@@ -121,8 +121,8 @@ class StartPage(tk.Frame):
 			
 			# self.start.grid(row=2, column=2, padx=1, pady=1)
 			# self.color_choice.grid(row=0, column=2, padx=1, pady=2, sticky="WES")
-			self.lands_algorithm.grid(row=1, column=2, padx=1, pady=2, sticky="WEN")
-			self.help_button.grid(row=2, column=2, padx=1, pady=2, sticky="WESN")
+			self.lands_algorithm.grid(row=0, column=2, padx=1, pady=2, sticky="WEN")
+			self.help_button.grid(row=1, column=2, padx=1, pady=2, sticky="WESN")
 			self.exit_button.grid(row=2, column=2, padx=1, pady=2, sticky="WEN")
 
 
@@ -306,6 +306,13 @@ class HelpPage(tk.Frame):
 			Grid.rowconfigure(self,5,weight=1)
 			Grid.rowconfigure(self,6,weight=1)
 			Grid.rowconfigure(self,7,weight=1)
+			Grid.rowconfigure(self,8,weight=1)
+			Grid.rowconfigure(self,9,weight=1)
+			Grid.rowconfigure(self,10,weight=1)
+			Grid.rowconfigure(self,11,weight=1)
+			Grid.rowconfigure(self,12,weight=1)
+			Grid.rowconfigure(self,13,weight=1)
+			Grid.rowconfigure(self,14,weight=1)
 			Grid.columnconfigure(self,0,weight=1)
 			Grid.columnconfigure(self,1,weight=1)
 			Grid.columnconfigure(self,2,weight=1)
@@ -316,11 +323,11 @@ class HelpPage(tk.Frame):
 																			text="Help Page",
 																			font=("Garamond", 14))
 			self.greeting_label = tk.Label(self,
-																				 text="Thank you so much for using the Deck Building Companion App",
+																				 text="Thank you so much for using the Deck Building Companion App.",
 																				 font=("Garamond", 14))
 			
 			self.information1_label = tk.Label(self,
-																				 text="This app is designed to aid you, the user, in your deck building journey",
+																				 text="This app is designed to aid you, the user, in your deck building journey.",
 																				 font=("Garamond", 14))
 			
 			self.information2_label = tk.Label(self,
@@ -344,9 +351,56 @@ class HelpPage(tk.Frame):
 																				 font=("Garamond", 14))
 			
 			self.information7_label = tk.Label(self,
-																				 text="the included directions.",
+																				 text="the included directions. It's fast and easy!",
 																				 font=("Garamond", 14))
+			
+			self.information8_label = tk.Label(self,
+																				 text="To get certain information, like the average Mana Value, we recommend using a ",
+																				 font=("Garamond", 14))
+			
+			self.information9_label = tk.Label(self,
+																				 text="deck building app, such as MoxField or ManaBox.",
+																				 font=("Garamond", 14))
+			
+			self.information10_label = tk.Label(self,
+																				 text="For questions or suggested features, please email us at korachof@gmail.com",
+																				 font=("Garamond", 14))
+			
+			self.return_to_start_button = tk.Button(self,
+																							text="Return to Main Menu",
+																							bg="#2f9fd6",
+																							fg="white", 
+																							width = 30,
+																							activebackground="#146d99", 
+																							activeforeground="white",
+																							font=("Garamond", 14),
+																							command=lambda: self.mainWindow.create_frame(0))
+																				
+			self.exit_button = tk.Button(self,
+																		text="Exit",
+																		bg="#2f9fd6",
+																		fg="white",
+																		width = 30,
+																		activebackground="#146d99", 
+																		activeforeground="white",
+																		font=("Garamond", 14), 
+																		command=sys.exit)
+			
 
+			self.welcome_help_label.grid(row=1, column=2, pady=30, padx=1)
+			self.greeting_label.grid(row=2, column=2, pady=1, padx=1)
+			self.information1_label.grid(row=3, column=2, pady=(30, 1), padx=1)
+			self.information2_label.grid(row=4, column=2, pady=1, padx=1)
+			self.information3_label.grid(row=5, column=2, pady=1, padx=1)
+			self.information4_label.grid(row=6, column=2, pady=(1, 30), padx=1)
+			self.information5_label.grid(row=7, column=2, pady=1, padx=1)
+			self.information6_label.grid(row=8, column=2, pady=1, padx=1)
+			self.information7_label.grid(row=9, column=2, pady=1, padx=1)
+			self.information8_label.grid(row=10, column=2, pady=(30, 1), padx=1)
+			self.information9_label.grid(row=11, column=2, pady=1, padx=1)
+			self.information10_label.grid(row=12, column=2, pady=30, padx=1)
+			self.return_to_start_button.grid(row=13, column=2, pady=2, padx=1)
+			self.exit_button.grid(row=14, column=2, pady=2, padx=1)
 
 
 if __name__ == "__main__":
