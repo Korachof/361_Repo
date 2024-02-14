@@ -125,6 +125,9 @@ class StartPage(tk.Frame):
 			self.help_button.grid(row=1, column=2, padx=1, pady=2, sticky="WESN")
 			self.exit_button.grid(row=2, column=2, padx=1, pady=2, sticky="WEN")
 
+			# allow for exiting without the mouse
+			self.mainWindow.bind("<Escape>", lambda x: sys.exit())
+
 
 class LandCountPage(tk.Frame):
 	def __init__(self, frameHash, mainWindow):
@@ -197,16 +200,14 @@ class LandCountPage(tk.Frame):
 			self.blank_space_label2 = tk.Label(self,
 																			 text="",
 																			 font=("Garamond", 16))
-			self.text_input_avg_mana = tk.Text(self,
+			self.text_input_avg_mana = tk.Entry(self,
 																	bg="#f0b49a", 
 																	fg="#060606",
-																	height=1,
 																	width=6,
 																	font=("Garamond", 14))
-			self.text_input_draw_ramp = tk.Text(self,
+			self.text_input_draw_ramp = tk.Entry(self,
 																	bg="#f0b49a", 
 																	fg="#060606",
-																	height=1,
 																	width=6,
 																	font=("Garamond", 14))
 
@@ -218,8 +219,8 @@ class LandCountPage(tk.Frame):
 																				activeforeground="white",
 																				font=("Garamond", 14),
 																				command=lambda: 
-																				self.find_land_count(self.text_input_avg_mana.get(1.0, "end-1c"),
-																															 self.text_input_draw_ramp.get(1.0, "end-1c"))
+																				self.find_land_count(self.text_input_avg_mana.get(),
+																															 self.text_input_draw_ramp.get())
 																				)
 			
 			self.return_to_start_button = tk.Button(self,
@@ -260,8 +261,14 @@ class LandCountPage(tk.Frame):
 
 
 			# set it so the enter button will also work with calculating land count
-			self.bind("<Return>", lambda: self.find_land_count(self.text_input_avg_mana.get(1.0, "end-1c"),
-																												self.text_input_draw_ramp.get(1.0, "end-1c")))
+
+			self.text_input_avg_mana.bind("<Return>", lambda e: self.text_input_draw_ramp.focus_set())
+
+			self.text_input_draw_ramp.bind("<Return>", lambda e: self.find_land_count(self.text_input_avg_mana.get(),
+																			 		  self.text_input_draw_ramp.get()))
+			
+			# allow for exiting without the mouse
+			self.mainWindow.bind("<Escape>", lambda x: sys.exit())
 
 
 	def find_land_count(self, mana_avg, ramp_draw):
@@ -406,6 +413,9 @@ class HelpPage(tk.Frame):
 			self.information10_label.grid(row=12, column=2, pady=30, padx=1)
 			self.return_to_start_button.grid(row=13, column=2, pady=2, padx=1)
 			self.exit_button.grid(row=14, column=2, pady=2, padx=1)
+
+		# allow for exiting without the mouse
+			self.mainWindow.bind("<Escape>", lambda x: sys.exit())
 
 
 if __name__ == "__main__":
