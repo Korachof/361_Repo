@@ -88,11 +88,12 @@ class StartPage(tk.Frame):
 																		command=lambda: self.mainWindow.create_frame(2)) """
 			
 			self.lands_algorithm = tk.Button(self.options_frame, 
-																		text="Calculate Recommended Land Count", 
+																		text="Calculate Land Count", 
 																		bg="#2f9fd6", 
 																		fg="white", 
 																		activebackground="#146d99", 
-																		activeforeground="white", 
+																		activeforeground="white",
+																		width=30, 
 																		font=("Garamond", 14),
 																		command=lambda: self.mainWindow.create_frame(1))
 			
@@ -259,6 +260,14 @@ class LandCountPage(tk.Frame):
 			self.return_to_start_button.grid(row=16, column=1, padx=1, pady=2, sticky="WESN")
 			self.exit_button.grid(row=17, column=1, pady=2, sticky="WEN")
 
+			# set the focus to the first text box so a mouse isn't required
+
+			self.text_input_avg_mana.focus_set()
+
+			# add ability to use arrow keys to jump between text fields
+
+			self.mainWindow.bind("<Up>", lambda y: self.text_input_avg_mana.focus_set())
+			self.mainWindow.bind("<Down>", lambda y: self.text_input_draw_ramp.focus_set())
 
 			# set it so the enter button will also work with calculating land count
 
@@ -266,7 +275,6 @@ class LandCountPage(tk.Frame):
 
 			self.text_input_draw_ramp.bind("<Return>", lambda e: self.find_land_count(self.text_input_avg_mana.get(),
 																			 		  self.text_input_draw_ramp.get()))
-			
 			# allow for exiting without the mouse
 			self.mainWindow.bind("<Escape>", lambda x: sys.exit())
 
