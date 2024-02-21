@@ -232,8 +232,7 @@ class LandCountPage(tk.Frame):
 																				font=("Garamond", 14),
 																				command=lambda: 
 																				self.find_land_count(self.text_input_avg_mana.get(),
-																															 self.text_input_draw_ramp.get())
-																				)
+																									 self.text_input_draw_ramp.get()))
 			
 			self.return_to_start_button = tk.Button(self,
 																							text="Return to Main Menu",
@@ -263,7 +262,7 @@ class LandCountPage(tk.Frame):
 			self.avg_mana_text.grid(row=8, column=1, padx=1, pady=1)
 			self.avg_mana_text2.grid(row=9, column=1, padx=1, pady=1)
 			self.text_input_avg_mana.grid(row=10, column=1, padx=0, pady=10)
-			self.draw_ramp_text.grid(row=11, column=1, padx=0, pady=1)
+			self.draw_ramp_text.grid(row=11, column=1, padx=1, pady=1)
 			self.draw_ramp_text2.grid(row=12, column=1, padx=1, pady=1)
 			self.text_input_draw_ramp.grid(row=13, column=1, padx=0, pady=10)
 			self.blank_space_label2.grid(row=14, column=1, padx=1, pady=8)
@@ -336,6 +335,7 @@ class ColorSelectPage(tk.Frame):
 		Grid.rowconfigure(self,4,weight=1)
 		Grid.rowconfigure(self,5,weight=1)
 		Grid.rowconfigure(self,6,weight=1)
+		Grid.rowconfigure(self,7,weight=1)
 		Grid.columnconfigure(self,0,weight=1)
 		Grid.columnconfigure(self,1,weight=1)
 		Grid.columnconfigure(self,2,weight=1)
@@ -343,9 +343,11 @@ class ColorSelectPage(tk.Frame):
 		Grid.columnconfigure(self,4,weight=1)
 
 		# text label
-		self.directions_label = tk.Label(self, text="Please select each button that represents your commander's color identity below.", font="Garamond")
-		self.directions_label2 = tk.Label(self, text="Once finished, select the Staples List you would like to use from the dropdown menu.", font="Garamond")
-		self.directions_label3 = tk.Label(self, text="Then press Start", font="Garamond")
+		self.directions_label = tk.Label(self, text="Please select each button that represents your commander's color identity below.", font=("Garamond", 14))
+		self.directions_label2 = tk.Label(self, text="Once you have selected your deck's colors, press Find Staples Now", font=("Garamond", 14))
+		self.directions_label3 = tk.Label(self, text="When a color is selected, the button will turn grey.", font=("Garamond", 13))
+		self.directions_label4= tk.Label(self, text="Click a button a second time to unselect that color.", font=("Garamond", 13))
+									
 		
 		# "Please select which colors are included in your deck below"
 		self.white_button = PhotoImage(file="button_images/white.png")
@@ -362,7 +364,7 @@ class ColorSelectPage(tk.Frame):
 		self.green_var = 0
 
 		self.options_frame = tk.Frame(self)
-		self.options_frame.grid(row=3, column=2, padx=1, pady=20, sticky="S")
+		self.options_frame.grid(row=4, column=2, padx=1, pady=30, sticky="S")
 
 		# Set the MTG color buttons
 		self.white = Button(self.options_frame,
@@ -383,28 +385,41 @@ class ColorSelectPage(tk.Frame):
 		
 		# set menu option buttons 
 
+		self.find_staples_button= tk.Button(self,
+									 			text="Find Staples Now",
+												bg="#D6662F",
+												fg="white", 
+												width=30,
+												activebackground="#146d99", 
+												activeforeground="white",
+												font=("Garamond", 14),
+												command=lambda: self.mainWindow.create_frame(4))
+
 		self.return_to_start_button = tk.Button(self,
 												text="Return to the Main Menu",
 												bg="#2f9fd6",
 												fg="white", 
+												width=30,
 												activebackground="#146d99", 
 												activeforeground="white",
-												font="Garamond",
+												font=("Garamond", 14),
 												command=lambda: self.mainWindow.create_frame(0))
 
 		self.exit_button = tk.Button(self,
 									 text="Exit",
 									 bg="#2f9fd6",
 									 fg="white", 
+									 width=30,
 									 activebackground="#146d99", 
 									 activeforeground="white",
-									 font="Garamond", 
+									 font=("Garamond", 14), 
 									 command=sys.exit)
 		
 		# Set the grid for the instructions
-		self.directions_label.grid(row=0, column=2, columnspan=5)
-		self.directions_label2.grid(row=1, column=2, columnspan=5)
-		self.directions_label3.grid(row=2, column=2, columnspan=5)
+		self.directions_label.grid(row=0, column=2, columnspan=5, padx=1, pady=1)
+		self.directions_label2.grid(row=1, column=2, columnspan=5, padx=1, pady=1)
+		self.directions_label3.grid(row=2, column=2, columnspan=5, padx=1, pady=1)
+		self.directions_label4.grid(row=3, column=2, columnspan=5, padx=1, pady=1)
 		
 		# Set the grid for each of the MTG color buttons
 		self.white.grid(row=1,
@@ -423,15 +438,75 @@ class ColorSelectPage(tk.Frame):
 						column=4,
 						padx=2)
 		
+		# set the grid for the start button
+		self.find_staples_button.grid(row=5,
+									  column=2,
+									  padx=1,
+									  pady=2,
+									  sticky="S")
+
+		
 		# Set the grid for the Return to Main Menu button
-		self.return_to_start_button.grid(row=4,
+		self.return_to_start_button.grid(row=6,
 										 column=2,
-										 sticky="SWE")
+										 padx=1,
+										 pady=2,
+										 sticky="S")
 
 		# Set the grid for the exit button
-		self.exit_button.grid(row=5,
+		self.exit_button.grid(row=7,
 				   column=2,
-				   sticky="SWE")
+				   padx=1,
+				   pady=2,
+				   sticky="N")
+		
+	def color_choice(self, choice):
+		"""Function that takes user button selects and changes the color + relief state of those buttons
+		based on whether they've been clicked or not."""
+		if choice == "w":
+			if self.white_var == 0:
+				self.white_var += 1
+				self.white.config(relief=SUNKEN, bg="grey")
+			
+			else:
+				self.white_var -= 1
+				self.white.config(relief=RAISED, bg="white")
+	
+		elif choice == "u":
+			if self.blue_var == 0:
+				self.blue_var += 1
+				self.blue.config(relief=SUNKEN, bg="grey")
+			
+			else:
+				self.blue_var -= 1
+				self.blue.config(relief=RAISED, bg="white")
+			
+		elif choice == "b":
+			if self.black_var == 0:
+				self.black_var += 1
+				self.black.config(relief=SUNKEN, bg="grey")
+			
+			else:
+				self.black_var -= 1
+				self.black.config(relief=RAISED, bg="white")
+			
+		elif choice == "r":
+			if self.red_var == 0:
+				self.red_var += 1
+				self.red.config(relief=SUNKEN, bg="grey")
+			
+			else:
+				self.red_var -= 1
+				self.red.config(relief=RAISED, bg="white")
+		
+		elif choice == "g":
+			if self.green_var == 0:
+				self.green_var += 1
+				self.green.config(relief=SUNKEN, bg="grey")
+			
+			else:
+				self.green_var -= 1
+				self.green.config(relief=RAISED, bg="white")
 
 
 class HelpPage(tk.Frame):
