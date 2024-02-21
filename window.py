@@ -508,6 +508,29 @@ class ColorSelectPage(tk.Frame):
 				self.green_var -= 1
 				self.green.config(relief=RAISED, bg="white")
 
+	def find_color_staples(self):
+		"""Function that takes the selected colors from the buttons and connects to a microservice to return a list with
+		all staples of those selected colors."""
+
+		# initialize color_list with just colorless
+		color_list = ["c"]
+
+		if self.white_var > 0:
+			color_list.append("w")
+
+		if self.blue_var > 0:
+			color_list.append("u")
+
+		if self.black_var > 0:
+			color_list.append("b")
+
+		if self.red_var > 0:
+			color_list.append("r")
+
+		if self.green_var > 0:
+			color_list.append("g")
+
+
 
 class HelpPage(tk.Frame):
 	"""Class to create the frame for the Help Page"""
@@ -587,14 +610,14 @@ class HelpPage(tk.Frame):
 																				 font=("Garamond", 14))
 			
 			self.return_to_start_button = tk.Button(self,
-																							text="Return to Main Menu",
-																							bg="#2f9fd6",
-																							fg="white", 
-																							width = 30,
-																							activebackground="#146d99", 
-																							activeforeground="white",
-																							font=("Garamond", 14),
-																							command=lambda: self.mainWindow.create_frame(0))
+																				text="Return to Main Menu",
+																				bg="#2f9fd6",
+																				fg="white", 
+																				width = 30,
+																				activebackground="#146d99", 
+																			    activeforeground="white",
+																				font=("Garamond", 14),
+																				command=lambda: self.mainWindow.create_frame(0))
 																				
 			self.exit_button = tk.Button(self,
 																		text="Exit",
