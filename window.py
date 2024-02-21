@@ -361,6 +361,78 @@ class ColorSelectPage(tk.Frame):
 		self.red_var = 0
 		self.green_var = 0
 
+		self.options_frame = tk.Frame(self)
+		self.options_frame.grid(row=3, column=2, padx=1, pady=20, sticky="S")
+
+		# Set the MTG color buttons
+		self.white = Button(self.options_frame,
+						 image=self.white_button,
+						 command=lambda: self.color_choice("w"))
+		self.blue = Button(self.options_frame,
+						 image=self.blue_button,
+						 command=lambda: self.color_choice("u"))
+		self.black = Button(self.options_frame,
+						 image=self.black_button,
+						 command=lambda: self.color_choice("b"))
+		self.red = Button(self.options_frame,
+						 image=self.red_button,
+						 command=lambda: self.color_choice("r"))
+		self.green = Button(self.options_frame,
+						 image=self.green_button,
+						 command=lambda: self.color_choice("g"))
+		
+		# set menu option buttons 
+
+		self.return_to_start_button = tk.Button(self,
+												text="Return to the Main Menu",
+												bg="#2f9fd6",
+												fg="white", 
+												activebackground="#146d99", 
+												activeforeground="white",
+												font="Garamond",
+												command=lambda: self.mainWindow.create_frame(0))
+
+		self.exit_button = tk.Button(self,
+									 text="Exit",
+									 bg="#2f9fd6",
+									 fg="white", 
+									 activebackground="#146d99", 
+									 activeforeground="white",
+									 font="Garamond", 
+									 command=sys.exit)
+		
+		# Set the grid for the instructions
+		self.directions_label.grid(row=0, column=2, columnspan=5)
+		self.directions_label2.grid(row=1, column=2, columnspan=5)
+		self.directions_label3.grid(row=2, column=2, columnspan=5)
+		
+		# Set the grid for each of the MTG color buttons
+		self.white.grid(row=1,
+						column=0,
+						padx=2)
+		self.blue.grid(row=1,
+						column=1,
+						padx=2)
+		self.black.grid(row=1,
+						column=2,
+						padx=2)
+		self.red.grid(row=1,
+						column=3,
+						padx=2)
+		self.green.grid(row=1,
+						column=4,
+						padx=2)
+		
+		# Set the grid for the Return to Main Menu button
+		self.return_to_start_button.grid(row=4,
+										 column=2,
+										 sticky="SWE")
+
+		# Set the grid for the exit button
+		self.exit_button.grid(row=5,
+				   column=2,
+				   sticky="SWE")
+
 
 class HelpPage(tk.Frame):
 	"""Class to create the frame for the Help Page"""
