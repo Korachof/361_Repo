@@ -328,6 +328,40 @@ class ColorSelectPage(tk.Frame):
 		self.mainWindow = mainWindow
 		self.label = tk.Label(self, text="Color Select")
 
+		# Configure the row and 5 columns for the buttons. 
+		Grid.rowconfigure(self,0,weight=1)
+		Grid.rowconfigure(self,1,weight=1)
+		Grid.rowconfigure(self,2,weight=1)
+		Grid.rowconfigure(self,3,weight=1)
+		Grid.rowconfigure(self,4,weight=1)
+		Grid.rowconfigure(self,5,weight=1)
+		Grid.rowconfigure(self,6,weight=1)
+		Grid.columnconfigure(self,0,weight=1)
+		Grid.columnconfigure(self,1,weight=1)
+		Grid.columnconfigure(self,2,weight=1)
+		Grid.columnconfigure(self,3,weight=1)
+		Grid.columnconfigure(self,4,weight=1)
+
+		# text label
+		self.directions_label = tk.Label(self, text="Please select each button that represents your commander's color identity below.", font="Garamond")
+		self.directions_label2 = tk.Label(self, text="Once finished, select the Staples List you would like to use from the dropdown menu.", font="Garamond")
+		self.directions_label3 = tk.Label(self, text="Then press Start", font="Garamond")
+		
+		# "Please select which colors are included in your deck below"
+		self.white_button = PhotoImage(file="button_images/white.png")
+		self.blue_button = PhotoImage(file="button_images/blue.png")
+		self.black_button = PhotoImage(file="button_images/black.png")
+		self.red_button = PhotoImage(file="button_images/red.png")
+		self.green_button = PhotoImage(file="button_images/green.png")
+
+		# check button variables
+		self.white_var = 0
+		self.blue_var = 0
+		self.black_var = 0
+		self.red_var = 0
+		self.green_var = 0
+
+
 class HelpPage(tk.Frame):
 	"""Class to create the frame for the Help Page"""
 	def __init__(self, frameHash, mainWindow):
