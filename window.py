@@ -38,7 +38,7 @@ class StartPage(tk.Frame):
 			super().__init__()
 			self.frameHash = frameHash
 			self.mainWindow = mainWindow
-			self.label = tk.Label(self, text="Main Page")
+			self.label = tk.Label(self, text="Main")
 			
 			# Configure the row and 5 columns for the buttons. 
 			Grid.rowconfigure(self,0,weight=1)
@@ -135,7 +135,7 @@ class LandCountPage(tk.Frame):
 			super().__init__()
 			self.frameHash = frameHash
 			self.mainWindow = mainWindow
-			self.label = tk.Label(self, text="Color Select Page")
+			self.label = tk.Label(self, text="Land Count")
 			# create the button images 
 			# self.start_button = PhotoImage(file="button_images/start_button.png")
 
@@ -309,13 +309,21 @@ class LandCountPage(tk.Frame):
 		self.blank_space_label2["text"] = "Number of Lands Your Deck Needs: " + str(land_count)
 
 
+class ColorSelectPage(tk.Frame):
+	""""Class to create the frame for the Color Select Page"""
+	def __init__(self, frameHash, mainWindow):
+		super().__init__()
+		self.frameHash = frameHash
+		self.mainWindow = mainWindow
+		self.label = tk.Label(self, text="Color Select")
+
 class HelpPage(tk.Frame):
 	"""Class to create the frame for the Help Page"""
 	def __init__(self, frameHash, mainWindow):
 			super().__init__()
 			self.frameHash = frameHash
 			self.mainWindow = mainWindow
-			self.label = tk.Label(self, text="Main Page")
+			self.label = tk.Label(self, text="Help")
 			
 			# Configure the row and 5 columns for the buttons. 
 			Grid.rowconfigure(self,0,weight=1)
