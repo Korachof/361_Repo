@@ -14,7 +14,7 @@ class WindowScreen(tk.Tk):
 		
 		Grid.rowconfigure(self,0,weight=1)
 		Grid.columnconfigure(self,0,weight=1)
-		self.frame_hash = {0: StartPage, 1: LandCountPage, 2: HelpPage}
+		self.frame_hash = {0: StartPage, 1: LandCountPage, 2: ColorSelectPage, 3: HelpPage}
 		self.current_window = 0
 		self.button_command = self.frame_hash[self.current_window]
 		self.frame = self.create_frame(self.current_window)
@@ -97,6 +97,16 @@ class StartPage(tk.Frame):
 																		font=("Garamond", 14),
 																		command=lambda: self.mainWindow.create_frame(1))
 			
+			self.color_select = tk.Button(self.options_frame,
+								 										text="Find Deck Staples",
+																		bg="#2f9fd6", 
+																		fg="white", 
+																		activebackground="#146d99", 
+																		activeforeground="white",
+																		width=30, 
+																		font=("Garamond", 14),
+																		command=lambda: self.mainWindow.create_frame(2))
+			
 			self.help_button = tk.Button(self.options_frame, 
 																		text="Help", 
 																		bg="#2f9fd6", 
@@ -104,7 +114,7 @@ class StartPage(tk.Frame):
 																		activebackground="#146d99", 
 																		activeforeground="white", 
 																		font=("Garamond", 14),
-																		command=lambda: self.mainWindow.create_frame(2))
+																		command=lambda: self.mainWindow.create_frame(3))
 			
 			self.exit_button = tk.Button(self.options_frame,
 																		text="Exit",
@@ -122,9 +132,10 @@ class StartPage(tk.Frame):
 			
 			# self.start.grid(row=2, column=2, padx=1, pady=1)
 			# self.color_choice.grid(row=0, column=2, padx=1, pady=2, sticky="WES")
-			self.lands_algorithm.grid(row=0, column=2, padx=1, pady=2, sticky="WEN")
-			self.help_button.grid(row=1, column=2, padx=1, pady=2, sticky="WESN")
-			self.exit_button.grid(row=2, column=2, padx=1, pady=2, sticky="WEN")
+			self.lands_algorithm.grid(row=0, column=2, padx=1, pady=2, sticky="WES")
+			self.color_select.grid(row=1, column=2, padx=1, pady=2, sticky="WESN")
+			self.help_button.grid(row=2, column=2, padx=1, pady=2, sticky="WESN")
+			self.exit_button.grid(row=3, column=2, padx=1, pady=2, sticky="WEN")
 
 			# allow for exiting without the mouse
 			self.mainWindow.bind("<Escape>", lambda x: sys.exit())
