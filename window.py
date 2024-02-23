@@ -177,71 +177,71 @@ class LandCountPage(tk.Frame):
 			Grid.columnconfigure(self,4,weight=1)
 
 			self.test_grid_label = tk.Label(self,
-																			text="Mana Source Calculator",
-																			font=("Garamond", 14))
+																		text="Mana Source Calculator",
+																		font=("Garamond", 14))
 			self.select_color_label = tk.Label(self,
-																				 text="Please enter the information in the fields below",
-																				 font=("Garamond", 14))
+																		text="Please enter the information in the fields below",
+																		font=("Garamond", 14))
 			self.instructions2 = tk.Label(self,
 																		text="* Please count each card only once.",
 																		font=("Garamond", 11))
 			self.instructions3 = tk.Label(self,
-																	 text="* If I card is both draw and ramp, count it as card draw",
-																	 font=("Garamond", 11))
+																	 	text="* If I card is both draw and ramp, count it as card draw",
+																	 	font=("Garamond", 11))
 			self.draw_ramp_text3 = tk.Label(self,
-																			text="* Card Draw: Draws at least one card",
-																			font=("Garamond", 11))
+																		text="* Card Draw: Draws at least one card",
+																		font=("Garamond", 11))
 			self.draw_ramp_text4 = tk.Label(self,
-																			text="* Mana Ramp: adds mana or searches for land",
-																			font=("Garamond", 11))
+																		text="* Mana Ramp: adds mana or searches for land",
+																		font=("Garamond", 11))
 			self.avg_mana_text= tk.Label(self,
-																	 text="Type the Average Mana Value",
-																	 font=("Garamond", 14))
+																	 	text="Type the Average Mana Value",
+																	 	font=("Garamond", 14))
 			self.avg_mana_text2 = tk.Label(self,
-																		 text="(Round to Two Decimal Places)",
-																		 font=("Garamond", 14))
+																		text="(Round to Two Decimal Places)",
+																		font=("Garamond", 14))
 			self.draw_ramp_text = tk.Label(self,
-																		 text="Type the Total Number of Card Draw and Ramp",
-																		 font=("Garamond", 14))
+																		text="Type the Total Number of Card Draw and Ramp",
+																		font=("Garamond", 14))
 			self.draw_ramp_text2 = tk.Label(self,
-																			text="of Mana Value of 2 or less",
-																			font=("Garamond", 11))
+																		text="of Mana Value of 2 or less",
+																		font=("Garamond", 11))
 			
 			self.blank_space_label = tk.Label(self,
-																			 text="")
+																		text="")
 			self.blank_space_label2 = tk.Label(self,
-																			 text="",
-																			 font=("Garamond", 16))
+																		text="",
+																		font=("Garamond", 16))
 			self.text_input_avg_mana = tk.Entry(self,
-																	bg="#f0b49a", 
-																	fg="#060606",
-																	width=6,
-																	font=("Garamond", 14))
+																		bg="#f0b49a", 
+																		fg="#060606",
+																		width=6,
+																		font=("Garamond", 14))
 			self.text_input_draw_ramp = tk.Entry(self,
-																	bg="#f0b49a", 
-																	fg="#060606",
-																	width=6,
-																	font=("Garamond", 14))
+																		bg="#f0b49a", 
+																		fg="#060606",
+																			width=6,
+																		font=("Garamond", 14))
 
 			self.land_count_button = tk.Button(self,
-																				text="Calculate Your Land Count",
-																				bg="#D6662F",
-																				fg="white", 
-																				activebackground="#146d99", 
-																				activeforeground="white",
-																				font=("Garamond", 14),
-																				command=lambda: 
-																				self.find_land_count(self.text_input_avg_mana.get(),
+																		text="Calculate Your Land Count",
+																		bg="#D6662F",
+																		fg="white", 
+																		activebackground="#146d99", 
+																		activeforeground="white",
+																		font=("Garamond", 14),
+																		command=lambda: 
+																		self.find_land_count(self.text_input_avg_mana.get(),
 																									 self.text_input_draw_ramp.get()))
 			
 			self.return_to_start_button = tk.Button(self,
-																							text="Return to Main Menu",
-																							bg="#2f9fd6",
-																							fg="white", 
-																							activebackground="#146d99", 
-																							activeforeground="white",
-																							font=("Garamond", 14),
-																							command=lambda: self.mainWindow.create_frame(0))
+																		text="Return to Main Menu",
+																		bg="#2f9fd6",
+																		fg="white", 
+																		activebackground="#146d99", 
+																		activeforeground="white",
+																		font=("Garamond", 14),
+																		command=lambda: self.mainWindow.create_frame(0))
 																				
 			self.exit_button = tk.Button(self,
 																		text="Exit",
@@ -529,7 +529,6 @@ class ColorSelectPage(tk.Frame):
 
 		if self.green_var > 0:
 			color_list.append("g")
-
 
 
 class HelpPage(tk.Frame):
