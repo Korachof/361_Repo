@@ -14,7 +14,7 @@ class WindowScreen(tk.Tk):
 		
 		Grid.rowconfigure(self,0,weight=1)
 		Grid.columnconfigure(self,0,weight=1)
-		self.frame_hash = {0: StartPage, 1: LandCountPage, 2: ColorSelectPage, 3: HelpPage}
+		self.frame_hash = {0: StartPage, 1: LandCountPage, 2: ColorSelectPage, 3: HelpPage, 4: ColorSelectResultsPage}
 		self.current_window = 0
 		self.button_command = self.frame_hash[self.current_window]
 		self.frame = self.create_frame(self.current_window)
@@ -529,6 +529,25 @@ class ColorSelectPage(tk.Frame):
 
 		if self.green_var > 0:
 			color_list.append("g")
+
+class ColorSelectResultsPage(tk.Frame):
+	"""Class to create the frame that will display the results from the Color Select Page"""
+	def __init__(self, frameHash, mainWindow):
+			super().__init__()
+			self.frameHash = frameHash
+			self.mainWindow = mainWindow
+			self.label = tk.Label(self, text="Deck Staples Results")
+
+			self.staples_output = Text(self, height=10, width=50)
+
+			# Configure the row and 5 columns for the buttons. 
+			Grid.rowconfigure(self,0,weight=1)
+			Grid.rowconfigure(self,1,weight=1)
+			Grid.columnconfigure(self,0,weight=1)
+			Grid.columnconfigure(self,1,weight=1)
+			Grid.columnconfigure(self,2,weight=1)
+
+			self.staples_output.grid(row=1, column=1)
 
 
 class HelpPage(tk.Frame):
