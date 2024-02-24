@@ -538,16 +538,69 @@ class ColorSelectResultsPage(tk.Frame):
 			self.mainWindow = mainWindow
 			self.label = tk.Label(self, text="Deck Staples Results")
 
-			self.staples_output = Text(self, height=10, width=50)
+			self.page_text_label = tk.Label(self,
+								   			text="The Results Containing Your Deck's Staples are Below",
+											font = ("Garamond", 14))
+			
+			self.page_instructions_label = tk.Label(self,
+										   			text="To scroll through the list, click inside of the text box and either use",
+													font= ("Garamond", 13))
+			
+			self.page_instructions2_label = tk.Label(self,
+										   			text="the scroll wheel on your mouse or the arrow keys on your keyboard.",
+													font= ("Garamond", 13))
+			
+
+			# text box set to width of 32 since longest card name is 31 characters
+			self.staples_output = Text(self, height=10, width=32)
+			self.staples_output.tag_configure("center", justify="center")
 
 			# Configure the row and 5 columns for the buttons. 
 			Grid.rowconfigure(self,0,weight=1)
 			Grid.rowconfigure(self,1,weight=1)
+			Grid.rowconfigure(self,2,weight=1)
+			Grid.rowconfigure(self,3,weight=1)
+			Grid.rowconfigure(self,4,weight=1)
+			Grid.rowconfigure(self,5,weight=1)
 			Grid.columnconfigure(self,0,weight=1)
 			Grid.columnconfigure(self,1,weight=1)
 			Grid.columnconfigure(self,2,weight=1)
 
-			self.staples_output.grid(row=1, column=1)
+			# open the text file and display its contents 
+			with open("staples_test.txt", "r") as staples_list_display:
+				self.staples_output.insert(INSERT, staples_list_display.read())
+
+			self.staples_output.tag_add("center", "1.0", "end")
+
+
+			# Make the Menu buttons
+			self.return_to_start_button = tk.Button(self,
+																				text="Return to Main Menu",
+																				bg="#2f9fd6",
+																				fg="white", 
+																				width = 30,
+																				activebackground="#146d99", 
+																			    activeforeground="white",
+																				font=("Garamond", 14),
+																				command=lambda: self.mainWindow.create_frame(0))
+																				
+			self.exit_button = tk.Button(self,
+																		text="Exit",
+																		bg="#2f9fd6",
+																		fg="white",
+																		width = 30,
+																		activebackground="#146d99", 
+																		activeforeground="white",
+																		font=("Garamond", 14), 
+																		command=sys.exit)
+
+			# set the labels on the grid 
+			self.page_text_label.grid(row=0, column=1, padx=1, pady=1, sticky="S")
+			self.page_instructions_label.grid(row=1, column=1, padx=1, pady=1, sticky="NS")
+			self.page_instructions2_label.grid(row=2, column=1, padx=1, pady=1, sticky="N")
+			self.staples_output.grid(row=3, column=1, padx=1, pady=40)
+			self.return_to_start_button.grid(row=4, column=1, padx=1, pady=1, sticky="S")
+			self.exit_button.grid(row=5, column=1, padx=1, pady=1, sticky="N")
 
 
 class HelpPage(tk.Frame):

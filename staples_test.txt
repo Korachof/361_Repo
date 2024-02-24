@@ -1,0 +1,43 @@
+Staples
+
+Colorless:
+Lightning Greaves
+Swiftfoot Boots
+Sol Ring
+Solemn Simulacrum
+Commander's Plate
+
+White:
+Esper Sentinel 
+Smothering Tithe
+Path to Exile
+Swords to Plowshares
+Teferi's Protection
+
+Blue:
+Counterspell
+Brainstorm
+Cyclonic Rift
+Rhystic Study
+Arcane Denial
+
+Black:
+Dark Ritual
+Gray Merchant of Asphodel
+Night's Whisper
+Reanimate
+Feed the Swarm
+
+Red:
+Chaos Warp
+Blasphemous Act
+Faithless Looting
+Jeska's Will
+Lightning Bolt
+
+Green:
+Beast Within
+Cultivate
+Heroic Intervention
+Beast Whisperer
+Birds of Paradise
