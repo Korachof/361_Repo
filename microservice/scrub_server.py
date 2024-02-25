@@ -7,7 +7,7 @@ def scrub_server():
     append that data to an existing file, with the time stamp as file name
     Returns: None"""
 
-    socket_obj = socket.socket()
+    socket_obj = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     print("Successfully Created A Socket")
 
     port = 12345
