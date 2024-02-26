@@ -186,12 +186,27 @@
 
     {
         "color": ["White", "Blue", "Black", "Red"],
-        "staples": []
+        "staples": ["Empty"]
     },
     
     {
         "color": ["Blue", "Black", "Red", "Green"],
-        "staples": []
+        "staples": ["Empty"]
+    },
+    
+    {
+        "color": ["White", "Blue", "Black", "Green"],
+        "staples": ["Empty"]
+    },
+
+    {
+        "color": ["White", "Blue", "Red", "Green"],
+        "staples": ["Empty"]
+    },
+    
+    {
+        "color": ["White", "Black", "Red", "Green"],
+        "staples": ["Empty"]
     },
 
     {

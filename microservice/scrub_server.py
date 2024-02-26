@@ -10,7 +10,7 @@ def scrub_server():
     socket_obj = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     print("Successfully Created A Socket")
 
-    port = 12345
+    port = 54321
 
     socket_obj.bind(("127.0.0.1", port))
     print(f"Binded Socket Successfully to: {port}")
@@ -43,7 +43,7 @@ def scrub_server():
             print(f"Received Data for: {time_stamp_data}")
 
             # save information to file or append to existing file
-            save_file(time_stamp_data, string_data)
+            save_file(string_data, time_stamp_data)
 
             # respond with file name
             response = time_stamp_data + ".txt"
@@ -62,7 +62,7 @@ def save_file(data_string, time_stamp):
     Returns: Str: file path"""
 
     # file path to check for
-    file_path = "./data/time_stamp.txt"
+    file_path = (f"./data/{time_stamp}")
 
     # open the txt file; if it doesn't exist create it
     txt_file = open(file_path, "a")
