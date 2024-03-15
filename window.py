@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import *
 import deck_build_algo
+import staples_client
 import sys
 
 
@@ -326,6 +327,7 @@ class ColorSelectPage(tk.Frame):
 		self.frameHash = frameHash
 		self.mainWindow = mainWindow
 		self.label = tk.Label(self, text="Color Select")
+		self.staples_list_string = None
 
 		# Configure the row and 5 columns for the buttons. 
 		Grid.rowconfigure(self,0,weight=1)
@@ -393,7 +395,7 @@ class ColorSelectPage(tk.Frame):
 												activebackground="#146d99", 
 												activeforeground="white",
 												font=("Garamond", 14),
-												command=lambda: self.mainWindow.create_frame(4))
+												command=lambda: self.find_color_staples())
 
 		self.return_to_start_button = tk.Button(self,
 												text="Return to the Main Menu",
@@ -513,22 +515,27 @@ class ColorSelectPage(tk.Frame):
 		all staples of those selected colors."""
 
 		# initialize color_list with just colorless
-		color_list = ["c"]
+		color_list = "c"
 
 		if self.white_var > 0:
-			color_list.append("w")
+			color_list = color_list + " w"
 
 		if self.blue_var > 0:
-			color_list.append("u")
+			color_list = color_list + " u"
 
 		if self.black_var > 0:
-			color_list.append("b")
+			color_list = color_list + " b"
 
 		if self.red_var > 0:
-			color_list.append("r")
+			color_list = color_list + " r"
 
 		if self.green_var > 0:
-			color_list.append("g")
+			color_list = color_list + " g"
+
+		self.staples_list_string = staples_client.clientInput(color_list)
+
+		# Display the Results Page Frame
+		self.mainWindow.create_frame(4)
 
 class ColorSelectResultsPage(tk.Frame):
 	"""Class to create the frame that will display the results from the Color Select Page"""
@@ -567,7 +574,7 @@ class ColorSelectResultsPage(tk.Frame):
 			Grid.columnconfigure(self,2,weight=1)
 
 			# open the text file and display its contents 
-			with open("staples_test.txt", "r") as staples_list_display:
+			with open("staples_file.txt", "r") as staples_list_display:
 				self.staples_output.insert(INSERT, staples_list_display.read())
 
 			self.staples_output.tag_add("center", "1.0", "end")
@@ -575,24 +582,24 @@ class ColorSelectResultsPage(tk.Frame):
 
 			# Make the Menu buttons
 			self.return_to_start_button = tk.Button(self,
-																				text="Return to Main Menu",
-																				bg="#2f9fd6",
-																				fg="white", 
-																				width = 30,
-																				activebackground="#146d99", 
-																			    activeforeground="white",
-																				font=("Garamond", 14),
-																				command=lambda: self.mainWindow.create_frame(0))
+													text="Return to Main Menu",
+													bg="#2f9fd6",
+													fg="white", 
+													width = 30,
+													activebackground="#146d99", 
+													activeforeground="white",
+													font=("Garamond", 14),
+													command=lambda: self.mainWindow.create_frame(0))
 																				
 			self.exit_button = tk.Button(self,
-																		text="Exit",
-																		bg="#2f9fd6",
-																		fg="white",
-																		width = 30,
-																		activebackground="#146d99", 
-																		activeforeground="white",
-																		font=("Garamond", 14), 
-																		command=sys.exit)
+										text="Exit",
+										bg="#2f9fd6",
+										fg="white",
+										width = 30,
+										activebackground="#146d99", 
+										activeforeground="white",
+										font=("Garamond", 14), 
+										command=sys.exit)
 
 			# set the labels on the grid 
 			self.page_text_label.grid(row=0, column=1, padx=1, pady=1, sticky="S")
