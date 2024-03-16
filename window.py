@@ -15,7 +15,7 @@ class WindowScreen(tk.Tk):
 		
 		Grid.rowconfigure(self,0,weight=1)
 		Grid.columnconfigure(self,0,weight=1)
-		self.frame_hash = {0: StartPage, 1: LandCountPage, 2: ColorSelectPage, 3: HelpPage, 4: ColorSelectResultsPage}
+		self.frame_hash = {0: StartPage, 1: LandCountPage, 2: ColorSelectPage, 3: HelpPage, 4: ColorSelectResultsPage, 5: ManaSymbolsPage}
 		self.current_window = 0
 		self.button_command = self.frame_hash[self.current_window]
 		self.frame = self.create_frame(self.current_window)
@@ -48,6 +48,7 @@ class StartPage(tk.Frame):
 			Grid.rowconfigure(self,3,weight=1)
 			Grid.rowconfigure(self,4,weight=1)
 			Grid.rowconfigure(self,5,weight=1)
+			Grid.rowconfigure(self,6,weight=1)
 			Grid.columnconfigure(self,0,weight=1)
 			Grid.columnconfigure(self,1,weight=1)
 			Grid.columnconfigure(self,2,weight=1)
@@ -98,6 +99,16 @@ class StartPage(tk.Frame):
 																		font=("Garamond", 14),
 																		command=lambda: self.mainWindow.create_frame(1))
 			
+			self.sources_algorithm = tk.Button(self.options_frame, 
+																		text="Calculate Mana Sources", 
+																		bg="#2f9fd6", 
+																		fg="white", 
+																		activebackground="#146d99", 
+																		activeforeground="white",
+																		width=30, 
+																		font=("Garamond", 14),
+																		command=lambda: self.mainWindow.create_frame(5))
+			
 			self.color_select = tk.Button(self.options_frame,
 								 										text="Find Deck Staples",
 																		bg="#2f9fd6", 
@@ -134,9 +145,10 @@ class StartPage(tk.Frame):
 			# self.start.grid(row=2, column=2, padx=1, pady=1)
 			# self.color_choice.grid(row=0, column=2, padx=1, pady=2, sticky="WES")
 			self.lands_algorithm.grid(row=0, column=2, padx=1, pady=2, sticky="WES")
-			self.color_select.grid(row=1, column=2, padx=1, pady=2, sticky="WESN")
-			self.help_button.grid(row=2, column=2, padx=1, pady=2, sticky="WESN")
-			self.exit_button.grid(row=3, column=2, padx=1, pady=2, sticky="WEN")
+			self.sources_algorithm.grid(row=1, column=2, padx=1, pady=2, sticky="WESN")
+			self.color_select.grid(row=2, column=2, padx=1, pady=2, sticky="WESN")
+			self.help_button.grid(row=3, column=2, padx=1, pady=2, sticky="WESN")
+			self.exit_button.grid(row=4, column=2, padx=1, pady=2, sticky="WEN")
 
 			# allow for exiting without the mouse
 			self.mainWindow.bind("<Escape>", lambda x: sys.exit())
@@ -569,6 +581,7 @@ class ColorSelectResultsPage(tk.Frame):
 			Grid.rowconfigure(self,3,weight=1)
 			Grid.rowconfigure(self,4,weight=1)
 			Grid.rowconfigure(self,5,weight=1)
+			Grid.rowconfigure(self,6,weight=1)
 			Grid.columnconfigure(self,0,weight=1)
 			Grid.columnconfigure(self,1,weight=1)
 			Grid.columnconfigure(self,2,weight=1)
@@ -581,8 +594,21 @@ class ColorSelectResultsPage(tk.Frame):
 
 
 			# Make the Menu buttons
+			self.return_to_color_select = tk.Button(self,
+								 		  text="Return to Find Staples Page",
+										  bg="#2f9fd6", 
+										  fg="white", 
+										  activebackground="#146d99", 
+										  activeforeground="white",
+										  width=30, 
+										  font=("Garamond", 14),
+										  command=lambda: self.mainWindow.create_frame(2))
+
+
+
+
 			self.return_to_start_button = tk.Button(self,
-													text="Return to Main Menu",
+													text="Main Menu",
 													bg="#2f9fd6",
 													fg="white", 
 													width = 30,
@@ -606,8 +632,207 @@ class ColorSelectResultsPage(tk.Frame):
 			self.page_instructions_label.grid(row=1, column=1, padx=1, pady=1, sticky="NS")
 			self.page_instructions2_label.grid(row=2, column=1, padx=1, pady=1, sticky="N")
 			self.staples_output.grid(row=3, column=1, padx=1, pady=40)
-			self.return_to_start_button.grid(row=4, column=1, padx=1, pady=1, sticky="S")
-			self.exit_button.grid(row=5, column=1, padx=1, pady=1, sticky="N")
+			self.return_to_color_select.grid(row=4, column=1, padx=1, pady=1, sticky="S")
+			self.return_to_start_button.grid(row=5, column=1, padx=1, pady=1, sticky="NS")
+			self.exit_button.grid(row=6, column=1, padx=1, pady=1, sticky="N")
+
+
+class ManaSymbolsPage(tk.Frame):
+	"""Class to create the frame for the mana staples page"""
+	def __init__(self, frameHash, mainWindow):
+		super().__init__()
+		self.frameHash = frameHash
+		self.mainWindow = mainWindow
+		self.label = tk.Label(self, text="Land Count")
+		# create the button images 
+		# self.start_button = PhotoImage(file="button_images/start_button.png")
+
+		# Configure the row and 5 columns for the buttons. 
+		# Configure the row and 5 columns for the buttons. 
+		Grid.rowconfigure(self,0,weight=1)
+		Grid.rowconfigure(self,1,weight=1)
+		Grid.rowconfigure(self,2,weight=1)
+		Grid.rowconfigure(self,3,weight=1)
+		Grid.rowconfigure(self,4,weight=1)
+		Grid.rowconfigure(self,5,weight=1)
+		Grid.rowconfigure(self,6,weight=1)
+		Grid.rowconfigure(self,7,weight=1)
+		Grid.rowconfigure(self,8,weight=1)
+		Grid.rowconfigure(self,9,weight=1)
+		Grid.rowconfigure(self,10,weight=1)
+		Grid.rowconfigure(self,11,weight=1)
+		Grid.rowconfigure(self,12,weight=1)
+		Grid.rowconfigure(self,13,weight=1)
+		Grid.rowconfigure(self,14,weight=1)
+		Grid.rowconfigure(self,15,weight=1)
+		Grid.rowconfigure(self,16,weight=1)
+		Grid.rowconfigure(self,17,weight=1)
+		Grid.rowconfigure(self,18,weight=1)
+		Grid.rowconfigure(self,19,weight=1)
+		Grid.columnconfigure(self,0,weight=0)
+		Grid.columnconfigure(self,1,weight=1)
+		Grid.columnconfigure(self,2,weight=0)
+		Grid.columnconfigure(self,3,weight=1)
+		Grid.columnconfigure(self,4,weight=1)
+
+		self.test_grid_label = tk.Label(self,
+																	text="Mana Symbol Calculator",
+																	font=("Garamond", 14))
+		self.instructions1 = tk.Label(self,
+																	text="Please enter the information in the fields below",
+																	font=("Garamond", 14))
+		self.instructions2 = tk.Label(self,
+																	text="For the specific color mana symbol you would like to calculate,",
+																	font=("Garamond", 14))
+		self.instructions3 = tk.Label(self,
+																	text="please choose the card with the lowest mana value that has the",
+																	font=("Garamond", 14))
+		self.instructions4 = tk.Label(self,
+																	text="highest number of symbols of that color in its mana cost.",
+																	font=("Garamond", 14))
+		self.instructions5 = tk.Label(self,
+																	text="* For example, if you have both Cryptic Command (mana value",
+																	font=("Garamond", 11))
+		
+		self.instructions6 = tk.Label(self,
+																	text=" of 4, 3 blue symbols) and Puppet Master (mana value of 3,",
+																	font=("Garamond", 11))
+		
+		self.instructions7 = tk.Label(self,
+																	text="3 blue mana symbols), include the information from Puppet Master.",
+																	font=("Garamond", 11))
+		
+		self.instructions8 = tk.Label(self,
+																	text="* For spells with X in their mana cost, estimate mana value",
+																	font=("Garamond", 11))
+		
+		self.instructions9 = tk.Label(self,
+																	text="based on when you plan on casting it on average.",
+																	font=("Garamond", 11))
+																	
+	
+		self.avg_mana_value_text = tk.Label(self,
+																	text="Type the mana value of the card below",
+																	font=("Garamond", 14))
+		
+		self.mana_symbols_text = tk.Label(self,
+																	text="Type how many symbols that card has",
+																	font=("Garamond", 14))
+		
+		self.blank_space_label = tk.Label(self,
+																	text="")
+		self.blank_space_label2 = tk.Label(self,
+																	text="",
+																	font=("Garamond", 16))
+		self.text_input_mana_value = tk.Entry(self,
+																	bg="#f0b49a", 
+																	fg="#060606",
+																	width=6,
+																	font=("Garamond", 14))
+		self.text_input_mana_symbols = tk.Entry(self,
+																	bg="#f0b49a", 
+																	fg="#060606",
+																		width=6,
+																	font=("Garamond", 14))
+
+		self.mana_symbols_button = tk.Button(self,
+																	text="Calculate Number of Mana Sources",
+																	bg="#D6662F",
+																	fg="white", 
+																	activebackground="#146d99", 
+																	activeforeground="white",
+																	font=("Garamond", 14),
+																	width=30,
+																	command=lambda: 
+																	self.find_mana_symbol_count(self.text_input_mana_value.get(),
+																									self.text_input_mana_symbols.get()))
+		
+		self.return_to_start_button = tk.Button(self,
+																	text="Return to Main Menu",
+																	bg="#2f9fd6",
+																	fg="white", 
+																	activebackground="#146d99", 
+																	activeforeground="white",
+																	font=("Garamond", 14),
+																	width=30,
+																	command=lambda: self.mainWindow.create_frame(0))
+																			
+		self.exit_button = tk.Button(self,
+																	text="Exit",
+																	bg="#2f9fd6",
+																	fg="white", 
+																	activebackground="#146d99", 
+																	activeforeground="white",
+																	font=("Garamond", 14), 
+																	width=30,
+																	command=sys.exit)
+		
+		self.test_grid_label.grid(row=1, column=1, padx=1, pady=(10, 1))
+		self.instructions1.grid(row=2, column=1, padx=1, pady=(1, 30))
+		self.instructions2.grid(row=3, column=1, padx=1, pady=1, sticky="S")
+		self.instructions3.grid(row=4, column=1, padx=1, pady=1, sticky="SN")
+		self.instructions4.grid(row=5, column=1, padx=1, pady=(1, 8), sticky="N")
+		self.instructions5.grid(row=6, column=1, padx=1, pady=1, sticky="S")
+		self.instructions6.grid(row=7, column=1, padx=1, pady=1, sticky="NS")
+		self.instructions7.grid(row=8, column=1, padx=1, pady=(1, 8), sticky="N")
+		self.instructions8.grid(row=9, column=1, padx=1, pady=1, sticky="S")
+		self.instructions9.grid(row=10, column=1, padx=0, pady=(1, 10), sticky="N")
+		self.avg_mana_value_text.grid(row=11, column=1, padx=1, pady=1)
+		self.text_input_mana_value.grid(row=12, column=1, padx=0, pady=10)
+		self.blank_space_label.grid(row=13, column=1, padx=1, pady=8)
+		self.mana_symbols_text.grid(row=14, column=1, padx=1, pady=1)
+		self.text_input_mana_symbols.grid(row=15, column=1, padx=0, pady=(10, 1))
+		self.blank_space_label2.grid(row=16, column=1, padx=1, pady=8)
+		
+
+		self.mana_symbols_button.grid(row=17, column=1, padx=1, pady=2, sticky="S")
+		self.return_to_start_button.grid(row=18, column=1, padx=1, pady=2, sticky="SN")
+		self.exit_button.grid(row=19, column=1, pady=2, sticky="N")
+		self.blank_space_label.grid(row=20, column=1, pady=2)
+		
+
+		
+	def find_mana_symbol_count(self, mana_value, mana_symbols):
+		"""Uses the Calculate Your Land Count button to calculate the avg number of lands the deck needs
+		"""
+
+		# try to convert mana_value from str to int. If error, return error message
+		try: 
+			val = int(mana_value)
+			
+		except ValueError:
+			self.blank_space_label2["text"] = "Error: Please type an integer for mana value"
+			self.blank_space_label2["fg"] = "#F05039"
+			return
+
+		# try to convert ramp_draw from str to int. If error, return error message
+		try: 
+			sym = int(mana_symbols)
+
+		except ValueError:
+			self.blank_space_label2["text"] = "Error: Please type an integer for number of mana symbols"
+			self.blank_space_label2["fg"] = "#F05039"
+			return
+
+		# no errors, so set text color to a pleasant color and use the mana_sources to calculate and display
+		self.blank_space_label2["fg"] = "#148899"
+
+		source_count = deck_build_algo.num_of_sources(val, sym)
+
+		# if it returns 101, too mana symbols were added
+		if source_count == 101:
+			self.blank_space_label2["text"] = "Error: Please choose a card with 4 mana symbols or fewer"
+			self.blank_space_label2["fg"] = "#F05039"
+			return
+		
+		# if it returns 201, too high of mana cost for 
+		elif source_count == 201:
+			self.blank_space_label2["text"] = "Error: Please enter 7 or less for number of symbols"
+			self.blank_space_label2["fg"] = "#F05039"
+			return
+
+		
+		self.blank_space_label2["text"] = "Number of sources you need of the given type: " + str(source_count)
 
 
 class HelpPage(tk.Frame):

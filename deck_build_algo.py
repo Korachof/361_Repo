@@ -31,11 +31,11 @@ def num_of_sources(mana_value, num_of_symbols):
     # it's impossible to have a card with greater mana_symbols than value, so return False if so.
     # I don't have data on symbols >= 5, so until I get the time to get that, this will be the limit
     if num_of_symbols > mana_value or num_of_symbols > 4:
-        return False
+        return 101
 
     # model only goes up to 7, and that should be sufficient for 99.9% of deck cases.
     if mana_value > 7:
-        return False
+        return 201
 
     value = val_to_sym_hash[mana_value][num_of_symbols]
 
